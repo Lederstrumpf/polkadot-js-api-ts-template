@@ -2,16 +2,15 @@
 import '@polkadot/api-augment';
 import '@polkadot/types-augment';
 
+// import from the local node_modules
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { Balance } from '@polkadot/types/interfaces/runtime';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { BN } from '@polkadot/util';
 
 const optionsPromise = yargs(hideBin(process.argv)).option('endpoint', {
 	alias: 'e',
 	type: 'string',
-	default: 'wss://rpc.polkadot.io',
+	default: 'wss://rococo-rpc.polkadot.io',
 	description: 'the wss endpoint. It must allow unsafe RPCs.',
 	required: true
 }).argv;
@@ -21,25 +20,20 @@ async function main() {
 	const provider = new WsProvider(options.endpoint);
 	const api = await ApiPromise.create({ provider });
 
-	console.log(
-		`Connected to node: ${options.endpoint} ${(await api.rpc.system.chain()).toHuman()} [ss58: ${
-			api.registry.chainSS58
-		}]`
-	);
-
-	for (const key in api.query) {
-		if (api.query[key] && api.query[key].palletVersion) {
-			console.log(key, (await api.query[key].palletVersion()).toHuman());
-		}
-	}
-
-	// reading a constant
-	const ED: Balance = api.consts.balances.existentialDeposit;
-	console.log(ED.toHuman());
-
-	// subscribe to finalized blocks:
-	const unsub = await api.rpc.chain.subscribeFinalizedHeads((header) => {
-		console.log(`finalized block #${header.number}`);
+	const block = 4230000;
+	api.rpc.chain.getBlockHash(block).then((hash) => {
+		api.at(hash).then((historic) => {
+			historic.query.mmr.rootHash().then((root) => {
+				api.rpc.mmr.generateProof([4220000], block, hash).then((proof) => {
+					api.rpc.mmr.verifyProof(proof).then((result) => {
+						console.log(result);
+					});
+					api.rpc.mmr.verifyProofStateless(root, proof).then((result) => {
+						console.log(result);
+					});
+				});
+			});
+		});
 	});
 }
 

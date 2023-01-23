@@ -26,16 +26,34 @@
 		"eslint": "^8.30.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.2.1",
+		"nodemon": "^2.0.20",
 		"npm-check-updates": "16.6.2",
 		"prettier": "^2.8.1",
+		"rimraf": "^3.0.2",
 		"ts-loader": "^9.4.2",
 		"ts-node": "^10.9.1",
-		"typescript": "4.9.4",
-		"nodemon": "^2.0.20",
-		"rimraf": "^3.0.2"
+		"typescript": "4.9.4"
 	},
 	"dependencies": {
-		"@polkadot/api": "9.10.5",
+		"@polkadot/api": "^9.14.1",
+		"@polkadot/dev": "^0.68.10",
 		"yargs": "^17.6.2"
+	},
+	"resolutions": {
+		"@polkadot/api": "file:../api/packages/api",
+		"@polkadot/api-augment": "file:../api/packages/api-augment/build",
+		"@polkadot/api-base": "file:../api/packages/api-base/build",
+		"@polkadot/api-contract": "file:../api/packages/api-contract/build",
+		"@polkadot/api-derive": "file:../api/packages/api-derive/build",
+		"@polkadot/rpc-augment": "file:../api/packages/rpc-augment/build",
+		"@polkadot/rpc-core": "file:../api/packages/rpc-core/build",
+		"@polkadot/rpc-provider": "file:../api/packages/rpc-provider/build",
+		"@polkadot/typegen": "file:../api/packages/typegen/build",
+		"@polkadot/types": "file:../api/packages/types/build",
+		"@polkadot/types-augment": "file:../api/packages/types-augment/build",
+		"@polkadot/types-codec": "file:../api/packages/types-codec/build",
+		"@polkadot/types-create": "file:../api/packages/types-create/build",
+		"@polkadot/types-known": "file:../api/packages/types-known/build",
+		"@polkadot/types-support": "file:../api/packages/types-support/build"
 	}
 }
