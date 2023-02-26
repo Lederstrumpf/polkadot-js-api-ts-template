@@ -35,25 +35,25 @@
 		"typescript": "4.9.4"
 	},
 	"dependencies": {
-		"@polkadot/api": "^9.14.1",
+		"@polkadot/api": "^9.14.2",
 		"@polkadot/dev": "^0.68.10",
 		"yargs": "^17.6.2"
 	},
 	"resolutions": {
-		"@polkadot/api": "file:../api/packages/api",
-		"@polkadot/api-augment": "file:../api/packages/api-augment/build",
-		"@polkadot/api-base": "file:../api/packages/api-base/build",
-		"@polkadot/api-contract": "file:../api/packages/api-contract/build",
-		"@polkadot/api-derive": "file:../api/packages/api-derive/build",
-		"@polkadot/rpc-augment": "file:../api/packages/rpc-augment/build",
-		"@polkadot/rpc-core": "file:../api/packages/rpc-core/build",
-		"@polkadot/rpc-provider": "file:../api/packages/rpc-provider/build",
-		"@polkadot/typegen": "file:../api/packages/typegen/build",
-		"@polkadot/types": "file:../api/packages/types/build",
-		"@polkadot/types-augment": "file:../api/packages/types-augment/build",
-		"@polkadot/types-codec": "file:../api/packages/types-codec/build",
-		"@polkadot/types-create": "file:../api/packages/types-create/build",
-		"@polkadot/types-known": "file:../api/packages/types-known/build",
-		"@polkadot/types-support": "file:../api/packages/types-support/build"
+		"@polkadot/api": "file:../polkadot-js-api/packages/api",
+		"@polkadot/api-augment": "file:../polkadot-js-api/packages/api-augment/build",
+		"@polkadot/api-base": "file:../polkadot-js-api/packages/api-base/build",
+		"@polkadot/api-contract": "file:../polkadot-js-api/packages/api-contract/build",
+		"@polkadot/api-derive": "file:../polkadot-js-api/packages/api-derive/build",
+		"@polkadot/rpc-augment": "file:../polkadot-js-api/packages/rpc-augment/build",
+		"@polkadot/rpc-core": "file:../polkadot-js-api/packages/rpc-core/build",
+		"@polkadot/rpc-provider": "file:../polkadot-js-api/packages/rpc-provider/build",
+		"@polkadot/typegen": "file:../polkadot-js-api/packages/typegen/build",
+		"@polkadot/types": "file:../polkadot-js-api/packages/types/build",
+		"@polkadot/types-augment": "file:../polkadot-js-api/packages/types-augment/build",
+		"@polkadot/types-codec": "file:../polkadot-js-api/packages/types-codec/build",
+		"@polkadot/types-create": "file:../polkadot-js-api/packages/types-create/build",
+		"@polkadot/types-known": "file:../polkadot-js-api/packages/types-known/build",
+		"@polkadot/types-support": "file:../polkadot-js-api/packages/types-support/build"
 	}
 }
