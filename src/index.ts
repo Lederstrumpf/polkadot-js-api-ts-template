@@ -23,13 +23,22 @@ async function main() {
 	const block = 4230000;
 	api.rpc.chain.getBlockHash(block).then((hash) => {
 		api.at(hash).then((historic) => {
-			historic.query.mmr.rootHash().then((root) => {
+			historic.query.mmr.rootHash().then((historic_root) => {
 				api.rpc.mmr.generateProof([4220000], block, hash).then((proof) => {
-					api.rpc.mmr.verifyProof(proof).then((result) => {
-						console.log(result);
+					api.rpc.mmr.root(hash).then((rpc_root) => {
+						if (rpc_root.toString() !== historic_root.toString()) {
+							throw new Error('historic api and rpc mmr roots do not match');
+						}
 					});
-					api.rpc.mmr.verifyProofStateless(root, proof).then((result) => {
-						console.log(result);
+					api.rpc.mmr.verifyProof(proof).then((result) => {
+						if (!result) {
+							throw new Error('proof verification is invalid');
+						}
+					});
+					api.rpc.mmr.verifyProofStateless(historic_root, proof).then((result) => {
+						if (!result) {
+							throw new Error('stateless proof verification is invalid');
+						}
 					});
 				});
 			});
